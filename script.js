@@ -30,7 +30,7 @@ function setCorners(item, i) {
     let radius = "16px";
     switch (i) {
         case 0:
-            item.style.borderStyle = "none dashed dashed none";
+            item.style.borderStyle = "none none dashed none";
             item.style["border-top-left-radius"] = radius;
             break;
         case gridSize - 1:
@@ -38,11 +38,11 @@ function setCorners(item, i) {
             item.style["border-top-right-radius"] = radius;
             break;
         case gridSize * (gridSize - 1):
-            item.style.borderStyle = "dashed dashed none none";
+            item.style.borderStyle = "none";
             item.style["border-bottom-left-radius"] = radius;
             break;
         case gridSize * gridSize - 1:
-            item.style.borderStyle = "dashed none none dashed";
+            item.style.borderStyle = "none none none dashed";
             item.style["border-bottom-right-radius"] = radius;
             break;
     }
