@@ -8,10 +8,16 @@
     </head>
     <body>
         <div id="border">
-            <div id="inner-border">
-                <h1>Waldow-Sketch</h1>
-                <div id="grid"></div>
-            </div>  
+            <h1>Waldow-Sketch</h1>
+            <div id="grid"></div>
+            <div id="gui">
+                <button class="circle-button" id="color-picker">⬤</button>
+                <div id="slider-container">
+                    <div id="slider-text">16 x 16</div>
+                    <input type="range" min="1" max="64" value="16" id="size-slider">
+                </div>
+                <button class="circle-button" id="toggle-draw-erase">✒️</button>
+            </div>
         </div>
     </body>
 </html>

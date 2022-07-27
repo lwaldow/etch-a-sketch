@@ -5,7 +5,7 @@ body {
 }
 
 #border {
-    padding: 0px 64px 64px 64px;
+    padding: 0px 64px;
     background-color: crimson;
     width: auto;
     height: auto;
@@ -34,4 +34,34 @@ h1 {
     color: gold;
     text-align: center;
     
+}
+
+#gui {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0px;
+    gap: 64px;
+}
+
+.circle-button {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+#color-picker {
+    color: rgb(60,60,60);
+}
+
+#size-slider {
+    flex-grow: 1;
+    accent-color: gold;
+}
+
+#slider-text {
+    color: gold;
+    font-weight: bold;
+    text-align: center;
 }
