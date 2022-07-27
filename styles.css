@@ -22,7 +22,10 @@ body {
 }
 
 .grid-square {
-    border: 1px dashed lightgray;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: none none dashed dashed;
 }
 
 h1 {
