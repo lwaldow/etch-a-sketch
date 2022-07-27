@@ -4,6 +4,7 @@ let canvasSize = grid.width;
 let currentColor = "rgb(60,60,60)"
 
 updateGrid(DEFAULT_GRID_SIZE);
+initGUI();
 
 function updateGrid(newSize) {
 
@@ -50,5 +51,17 @@ function setCorners(item, i, gridSize) {
             item.style["border-bottom-right-radius"] = radius;
             break;
     }
+}
+
+function initGUI() {
+    let colorPicker = document.querySelector("#color-picker");
+    let sliderText = document.querySelector("#slider-text");
+    let slider = document.querySelector("#size-slider");
+    let toggleDraw = document.querySelector("#toggle-draw-erase");
+
+    //colorPicker.addEventListener("input", (event) => console.log(event));
+    slider.addEventListener("input", (event) => sliderText.innerHTML = event.target.value + " x " + event.target.value);
+    slider.addEventListener("change", (event) => updateGrid(event.target.value));
+    //toggleDraw.addEventListener("click", (event) => event.target.innerText = "frog");
 }
 
