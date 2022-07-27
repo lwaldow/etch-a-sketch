@@ -1,32 +1,40 @@
-const canvasSize = 512;
+const DEFAULT_GRID_SIZE = 16;
 const grid = document.querySelector("#grid");
-let gridSize = 16;
-let currentColor = "rgb(60,60,60)";
+let canvasSize = grid.width;
+let currentColor = "rgb(60,60,60)"
 
-grid.style.width = canvasSize + "px";
-grid.style.height = canvasSize + "px";
-grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-grid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+updateGrid(DEFAULT_GRID_SIZE);
 
-for (let i = 0; i < gridSize * gridSize; i++) {
-    let item = document.createElement("div");
-    item.classList.add("grid-square")
-    item.ondragstart = () => false;
-    item.style.width = canvasSize / gridSize;
+function updateGrid(newSize) {
 
-    setCorners(item, i);
+    grid.style.gridTemplateColumns = `repeat(${newSize}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${newSize}, 1fr)`;
 
-    item.addEventListener("mousedown", (event) => {
-        event.target.style.backgroundColor = currentColor;
-    })
-    item.addEventListener("mouseover", (event) => {
-        if (event.buttons == 1)
-            event.target.style.backgroundColor = currentColor;
-    });
-    grid.appendChild(item);
+    document.querySelectorAll(".grid-square").forEach((elem) => elem.remove());
+    createGridSquares(newSize);
 }
 
-function setCorners(item, i) {
+function createGridSquares(gridSize) {
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        let item = document.createElement("div");
+        item.classList.add("grid-square")
+        item.ondragstart = () => false;
+        item.style.width = canvasSize / gridSize;
+
+        setCorners(item, i, gridSize);
+
+        item.addEventListener("mousedown", (event) => {
+            event.target.style.backgroundColor = currentColor;
+        })
+        item.addEventListener("mouseover", (event) => {
+            if (event.buttons == 1)
+                event.target.style.backgroundColor = currentColor;
+        });
+        grid.appendChild(item);
+    }
+}
+
+function setCorners(item, i, gridSize) {
     let radius = "16px";
     switch (i) {
         case 0:
