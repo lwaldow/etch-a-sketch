@@ -34,7 +34,7 @@ function createGridSquares(gridSize) {
         item.classList.add("grid-square")
         item.ondragstart = () => false;
         item.style.width = canvasSize / gridSize + "px";
-        item.style.transition = "background-color 0.2s";
+        item.style.transition = "background-color 0.15s";
 
         setCorners(item, i, gridSize);
 
