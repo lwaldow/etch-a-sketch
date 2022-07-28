@@ -2,9 +2,22 @@ const DEFAULT_GRID_SIZE = 16;
 const grid = document.querySelector("#grid");
 let canvasSize = grid.width;
 let currentColor = "rgb(60,60,60)"
+let drawMode = true;
 
 updateGrid(DEFAULT_GRID_SIZE);
 initGUI();
+
+function draw(event) {
+    if (event.buttons == 1) {
+        event.target.style.backgroundColor = drawMode ? currentColor : "";
+    }
+}
+
+function toggleDraw(event) {
+    console.log("hello!!!")
+    drawMode = !drawMode;
+    event.target.innerText = drawMode ? "draw" : "erase";
+}
 
 function updateGrid(newSize) {
 
@@ -20,17 +33,13 @@ function createGridSquares(gridSize) {
         let item = document.createElement("div");
         item.classList.add("grid-square")
         item.ondragstart = () => false;
-        item.style.width = canvasSize / gridSize;
+        item.style.width = canvasSize / gridSize + "px";
+        item.style.transition = "background-color 0.2s";
 
         setCorners(item, i, gridSize);
 
-        item.addEventListener("mousedown", (event) => {
-            event.target.style.backgroundColor = currentColor;
-        })
-        item.addEventListener("mouseover", (event) => {
-            if (event.buttons == 1)
-                event.target.style.backgroundColor = currentColor;
-        });
+        item.addEventListener("mousedown", draw);
+        item.addEventListener("mouseover", draw);
         grid.appendChild(item);
     }
 }
@@ -57,11 +66,11 @@ function initGUI() {
     let colorPicker = document.querySelector("#color-picker");
     let sliderText = document.querySelector("#slider-text");
     let slider = document.querySelector("#size-slider");
-    let toggleDraw = document.querySelector("#toggle-draw-erase");
+    let toggleBtn = document.querySelector("#toggle-draw-erase");
 
-    //colorPicker.addEventListener("input", (event) => console.log(event));
     slider.addEventListener("input", (event) => sliderText.innerHTML = event.target.value + " x " + event.target.value);
     slider.addEventListener("change", (event) => updateGrid(event.target.value));
-    //toggleDraw.addEventListener("click", (event) => event.target.innerText = "frog");
+    colorPicker.addEventListener("input", (event) => currentColor = event.target.value);
+    toggleBtn.addEventListener("click", (event) => toggleDraw(event));
 }
 
